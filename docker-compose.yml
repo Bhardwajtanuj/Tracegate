@@ -1,0 +1,28 @@
+services:
+  database:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: phoenix
+    volumes:
+      - phoenix-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d phoenix"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - "6006:6006"
+      - "4317:4317"
+    environment:
+      PHOENIX_SQL_DATABASE_URL: postgresql://postgres:postgres@database:5432/phoenix
+
+volumes:
+  phoenix-data:

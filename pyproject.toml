@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tracegate"
+version = "1.0.0"
+description = "Observability and evaluation harness for tool-using agents"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "opentelemetry-api>=1.25",
+    "opentelemetry-sdk>=1.25",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+]
+
+[project.optional-dependencies]
+otlp = ["opentelemetry-exporter-otlp-proto-http>=1.25"]
+openai = ["openai>=1.40"]
+anthropic = ["anthropic>=0.34"]
+ragas = [
+    "ragas>=0.3,<0.5",
+    "langchain-openai>=0.2,<1",
+    "langchain-community>=0.3,<0.4",
+    "langchain-core>=0.3,<1",
+]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.5"]
+
+[project.scripts]
+tracegate = "tracegate.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tracegate = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore:.*ragas.*:DeprecationWarning"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

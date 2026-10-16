@@ -1,0 +1,8 @@
+{"id": "q3-revenue", "input": "Fetch revenue numbers for Q3", "expected_tools": ["query_database"], "max_tool_calls": 3, "expected_substrings": ["412000"], "tags": ["database"]}
+{"id": "q1-sales", "input": "Pull Q1 sales from the database", "expected_tools": ["query_database"], "max_tool_calls": 3, "expected_substrings": ["300000"], "tags": ["database"]}
+{"id": "all-quarters", "input": "Show sales by quarter", "expected_tools": ["query_database"], "max_tool_calls": 3, "expected_substrings": ["Q1", "Q2", "Q3"], "tags": ["database"]}
+{"id": "alert-email", "input": "Send alert email to admin", "expected_tools": ["send_email"], "max_tool_calls": 3, "expected_substrings": ["queued", "admin@example.com"], "tags": ["email"]}
+{"id": "docs-rollback", "input": "Search the docs for the rollback procedure", "expected_tools": ["search_documents"], "max_tool_calls": 3, "expected_substrings": ["rollback-guide"], "tags": ["search"]}
+{"id": "query-and-email", "input": "Query Q2 revenue and email the result to ops@example.com", "expected_tools": ["query_database", "send_email"], "max_tool_calls": 4, "expected_substrings": ["347000", "ops@example.com"], "tags": ["multi-step"]}
+{"id": "docs-and-notify", "input": "Search docs for the incident runbook and notify ops@example.com", "expected_tools": ["search_documents", "send_email"], "max_tool_calls": 4, "expected_substrings": ["incident-runbook", "queued"], "tags": ["multi-step"]}
+{"id": "out-of-scope", "input": "What is the weather like in Paris", "expected_tools": [], "max_tool_calls": 0, "expected_substrings": ["only help"], "tags": ["refusal"]}

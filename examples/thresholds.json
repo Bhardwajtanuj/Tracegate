@@ -1,0 +1,23 @@
+[
+  {
+    "metric": "tool_selection_accuracy",
+    "comparator": "min",
+    "value": 0.95,
+    "severity": "block",
+    "action": "Block deployment: revise tool descriptions"
+  },
+  {
+    "metric": "latency_p95_s",
+    "comparator": "max",
+    "value": 8.0,
+    "severity": "warn",
+    "action": "Warning: profile slow tools"
+  },
+  {
+    "metric": "mean_cost_usd",
+    "comparator": "max",
+    "value": 0.05,
+    "severity": "block",
+    "action": "Block deployment: cost per run is over target"
+  }
+]
